@@ -1,0 +1,26 @@
+# Импортировать необходимые библиотеки
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Загрузить данные
+data = load_iris()
+X = data.data
+y = data.target
+
+# Разделить данные на обучающий и тестовый наборы
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Создать модель решающего дерева
+model = DecisionTreeClassifier()
+
+# Обучить модель на обучающем наборе
+model.fit(X_train, y_train)
+
+# Сделать предсказания на тестовом наборе
+y_pred = model.predict(X_test)
+
+# Оценить точность модели
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Точность модели: {accuracy}')
